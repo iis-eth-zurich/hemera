@@ -1,0 +1,15 @@
+/compile.sh
+example/
+64
+AN.DB
+csrc
+DVEfiles
+vc_hdrs.h
+*.key
+simv*
+.synopsys*
+*.log
+*.swp
+*.vpd
+*.vcd
+

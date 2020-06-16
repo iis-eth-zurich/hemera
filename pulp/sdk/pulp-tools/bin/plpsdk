@@ -1,0 +1,159 @@
+#!/usr/bin/env python3
+
+import plptools as plp
+
+import argparse
+import os
+import imp
+import plptree
+
+sdk_src_path = 'pulp-sdk'
+
+sdk_versions = {
+  #'quentin': "e3dab52e64e3eea8bb3e5d6dbd35fc7c3602c3da"
+}
+
+
+
+
+parser = argparse.ArgumentParser(description='Run a testset')
+
+parser.add_argument('command', metavar='CMD', type=str, nargs='*',
+                   help='a command to be executed')
+
+parser.add_argument("--version", dest="version", default=None, help="Specify SDK version")
+parser.add_argument("--branch", dest="branch", default=None, help="Specify SDK branch")
+parser.add_argument("--config", dest="config", default=None, help="Specify target configuration")
+parser.add_argument("--group", dest="groups", action="append", default=[], help="Specify SDK group")
+
+[args, otherArgs] = parser.parse_known_args() 
+
+args = parser.parse_args()
+
+root_dir = os.getcwd()
+
+
+if args.config is not None and args.version is None:
+    args.version = sdk_versions.get(args.config)
+
+
+def get_sdk_groups(groups):
+    group_opt = ""
+    for group in groups:
+        group_opt += "--g %s " % group
+
+    if group_opt == "":
+        group_opt = " --p sdk"
+
+    return group_opt
+
+
+def build():
+
+    os.chdir(sdk_src_path)
+
+    if args.config is None:
+        raise Exception("The target configuration must be specified through option --config")
+
+    cmd = 'make cmd CONFIG=%s SDK_OPT="%s build env --stdout"' % (args.config, get_sdk_groups(args.groups))
+
+    print ("Building SDK with command: %s" % cmd)
+
+    if os.system(cmd):
+        return -1
+
+    os.chdir(root_dir)
+
+    return 0
+
+def deps():
+
+    os.chdir(sdk_src_path)
+
+    if args.config is None:
+        raise Exception("The target configuration must be specified through option --config")
+
+    cmd = 'make cmd CONFIG=%s SDK_OPT="--p sdk deps --stdout"' % (args.config)
+
+    print ("Getting SDK dependencies with command: %s" % cmd)
+
+    if os.system(cmd):
+        return -1
+
+    os.chdir(root_dir)
+
+    return 0
+
+
+def src():
+
+  if args.config is None:
+    raise Exception("The target configuration must be specified through option --config")
+
+  if not os.path.exists(sdk_src_path):
+    if os.system('git clone git@github.com:pulp-platform/pulp-sdk.git'):
+      return -1
+    os.chdir(sdk_src_path)
+  else:
+    os.chdir(sdk_src_path)
+    if os.system('git checkout master'):
+      return -1
+    if os.system('git pull'):
+      return -1
+
+  if args.version is not None:
+    if os.system('git checkout %s' % args.version):
+      return -1
+
+  if args.branch is not None:
+    if os.system('git checkout %s' % args.branch):
+      return -1
+    if os.system('git pull'):
+      return -1
+
+
+  cmd = 'make cmd CONFIG=%s SDK_OPT="%s checkout --stdout"' % (args.config, get_sdk_groups(args.groups))
+
+  print ("Getting SDK sources with command: %s" % cmd)
+
+  if os.system(cmd):
+    return -1
+
+  os.chdir(root_dir)
+
+
+  return 0
+
+
+
+commands = {
+  'build'   : ['Build SDK', build],
+  'src'     : ['Get SDK sources', src],
+  'deps'     : ['Get SDK dependencies', deps],
+}
+
+pendingCommands = []
+
+
+def handleCommands(log=None):
+
+  global pendingCommands
+
+  if len(args.command) == 0:
+      parser.print_help()
+      print ()
+      print ('Available commands:')
+      for name, cmd in commands.items():
+        print ('  %-10s %s' % (name, cmd[0]))
+      exit(0)
+  
+  else:
+    pendingCommands = args.command.copy()
+    for cmd in pendingCommands:
+
+      if commands.get(cmd)[1]() != 0:
+        print ()
+        print (plp.bcolors.FAIL + 'FATAL ERROR: the command \'%s\' has failed' % (cmd) + plp.bcolors.ENDC)
+        exit(1)
+
+handleCommands()

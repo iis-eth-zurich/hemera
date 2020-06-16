@@ -1,0 +1,224 @@
+---
+packages:
+  apb:
+    revision: d077333a7e5cc80008935dc2761440532dfdce81
+    version: 0.1.0
+    source:
+      Git: "https://github.com/pulp-platform/apb.git"
+    dependencies: []
+  axi:
+    revision: 29ae79761f896be7ac95b5f7b4914d64943c1e5d
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/axi.git"
+    dependencies:
+      - common_cells
+      - common_verification
+  axi2mem:
+    revision: f038968581a54cc5c5fc6fac83fa5d914f89b036
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/axi2mem.git"
+    dependencies:
+      - axi_slice
+      - common_cells
+  axi2per:
+    revision: fa8d9137caef7bd0726b905efb0c20401f5cd70f
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/axi2per.git"
+    dependencies:
+      - axi_slice
+  axi_mem_if:
+    revision: 0c7456caa29262cca278fd28a23ab1c99eff4a79
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/axi_mem_if.git"
+    dependencies:
+      - axi
+  axi_node:
+    revision: dbf2610c95eeb43f0fbf9241618caafd36dc9d19
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/axi_node.git"
+    dependencies:
+      - axi
+      - common_cells
+  axi_riscv_atomics:
+    revision: eafccfb892fd34cf6c89f766c2852cb52ea19b54
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/axi_riscv_atomics.git"
+    dependencies:
+      - axi
+      - common_cells
+      - common_verification
+  axi_slice:
+    revision: a6d761ababbba9ec49daf840925977b4aa529556
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/axi_slice.git"
+    dependencies:
+      - common_cells
+  axi_slice_dc:
+    revision: 7e5ad1bf7b517589a89f92fe99a7fa9178d5c778
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/axi_slice_dc.git"
+    dependencies:
+      - axi
+      - axi_slice
+  cluster_interconnect:
+    revision: e3172c42789b13556dff798e5c8f640e66cc3052
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/cluster_interconnect.git"
+    dependencies: []
+  cluster_peripherals:
+    revision: 56206bf50bf5c1150b14cb958ea4eed716d21278
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/cluster_peripherals.git"
+    dependencies:
+      - cluster_interconnect
+  common_cells:
+    revision: bbc0bf4699eb2c6babafce5924d86810507189a2
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/common_cells.git"
+    dependencies:
+      - common_verification
+      - tech_cells_generic
+  common_verification:
+    revision: 122a733f21027ce1098ebcc0e2a121e63d315b4d
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/common_verification.git"
+    dependencies: []
+  event_unit_flex:
+    revision: 803a9148bf022152a8f71c3fb9b21b429aa437cc
+    version: 1.0.1
+    source:
+      Git: "https://github.com/pulp-platform/event_unit_flex.git"
+    dependencies: []
+  fpga-support:
+    revision: fbf6aa54195bc4398a869886ea2a2ce286b004ca
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/fpga-support.git"
+    dependencies:
+      - common_cells
+  hier-icache:
+    revision: e68b60b0f6ffe58c90422816e95bead91766d1f8
+    version: 1.1.0
+    source:
+      Git: "https://github.com/pulp-platform/hier-icache.git"
+    dependencies: []
+  icache-intc:
+    revision: 42aee659c80b682ceb7a74ec3f8fd9ba054fea59
+    version: 1.0.0
+    source:
+      Git: "https://github.com/pulp-platform/icache-intc.git"
+    dependencies: []
+  icache_mp_128_pf:
+    revision: 5344c4d8d1403e8b54c5c0c3ae8e4fb7c8296567
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/icache_mp_128_pf.git"
+    dependencies:
+      - axi_slice
+      - cluster_peripherals
+      - common_cells
+      - icache-intc
+      - scm
+  mchan:
+    revision: 6cef1b7fd09e046257baa2f9dff0c52c2a8242b5
+    version: 1.1.0
+    source:
+      Git: "https://github.com/pulp-platform/mchan.git"
+    dependencies:
+      - common_cells
+  per2axi:
+    revision: 3095411ea20f8f97cb72f0febff07a74e69b5d14
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/per2axi.git"
+    dependencies:
+      - axi_slice
+      - riscv
+  pulp_cluster:
+    revision: 2a5b16d72c08b6a8f73a8731d67aad0408fc54fb
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/pulp_cluster.git"
+    dependencies:
+      - axi
+      - axi2mem
+      - axi2per
+      - axi_node
+      - axi_slice
+      - axi_slice_dc
+      - cluster_interconnect
+      - cluster_peripherals
+      - event_unit_flex
+      - fpga-support
+      - hier-icache
+      - icache_mp_128_pf
+      - mchan
+      - per2axi
+      - riscv
+      - fpu_interco
+      - timer_unit
+  riscv:
+    revision: 818fc10aa7429ee50c95054fb212b9f5c9b935e7
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/riscv.git"
+    dependencies:
+      - fpnew
+      - tech_cells_generic
+  scm:
+    revision: afd32402ac4636ca141fc0de1ae03d7b9078c527
+    version: 1.0.0
+    source:
+      Git: "https://github.com/pulp-platform/scm.git"
+    dependencies: []
+  tech_cells_generic:
+    revision: b84fd2e9cce42b25c9e7dcb285c197c0a15bebd2
+    version: 0.1.5
+    source:
+      Git: "https://github.com/pulp-platform/tech_cells_generic.git"
+    dependencies: []
+  timer_unit:
+    revision: 9227dc7c9b3c3b6899dc02c12e970bf27320adb5
+    version: 1.0.0
+    source:
+      Git: "https://github.com/pulp-platform/timer_unit.git"
+    dependencies: []
+  fpnew:
+    revision: 4a241d48e7e16ebd146423769828fdcd7e90de61
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/fpnew.git"
+    dependencies:
+      - common_cells
+      - fpu_div_sqrt_mvp
+  fpu_div_sqrt_mvp:
+    revision: 83a601f97934ed5e06d737b9c80d98b08867c5fa
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/fpu_div_sqrt_mvp.git"
+    dependencies:
+      - common_cells
+  fpu_interco:
+    revision: 28996e9ed7c3f2edcdc13bd113dc99f33099cbee
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/fpu_interco.git"
+    dependencies: []
+  riscv-dbg:
+    revision: a502c410b6056d363127b74fd6da58aa2a7091c4
+    version: 0.3.0
+    source:
+      Git: "https://github.com/pulp-platform/riscv-dbg.git"
+    dependencies: []

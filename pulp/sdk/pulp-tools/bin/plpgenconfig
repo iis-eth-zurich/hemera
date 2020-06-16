@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+
+import argparse
+import userconfig.top
+import userconfig.top_new
+
+parser = argparse.ArgumentParser(description='Generate a system configuration from a user one')
+
+parser.add_argument(
+    "--input", dest="input", default=None,
+    help="Specify input configuration"
+)
+
+parser.add_argument(
+    "--user-input", dest="user_input", default=None,
+    help="Specify input user configuration"
+)
+
+parser.add_argument(
+    "--output", dest="output", default=None,
+    help="Specify output system configuration"
+)
+
+[args, otherArgs] = parser.parse_known_args()
+
+parser.args = parser.parse_args()
+
+if args.user_input is not None:
+
+  top = userconfig.top_new.Top(config_path=args.user_input)
+
+else:
+
+  top = userconfig.top.Top(config_path=args.input)
+
+top.gen(args.output)

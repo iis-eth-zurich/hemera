@@ -1,0 +1,113 @@
+#!/usr/bin/env python3
+
+import plptools as plp
+
+import argparse
+import os
+
+parser = argparse.ArgumentParser(description='Access Pulp database')
+
+parser.add_argument('command', metavar='CMD', type=str, nargs='*',
+                    help='a command to be executed')
+parser.add_argument("--debug", dest="debug", action='store_true', default=False, help="Activate debug mode for this script")
+parser.add_argument("--package", dest="packages", action="append", default=None, help="Specifies active packages")
+parser.add_argument("--distrib", dest="distrib", default=None, help="Specifies the Linux distribution for the packages to be downloaded")
+parser.add_argument("--tests", dest="tests", action="store_true", help="Dump tests")
+parser.add_argument("--builds", dest="builds", action="store_true", help="Dump builds")
+parser.add_argument("--branch", dest="branches", action="append", default=[], help="Select branch to use")
+parser.add_argument("--xls", dest="xls", default=None, help="Specify excel file")
+parser.add_argument("--mail", dest="mail", default=None, help="Send an email")
+parser.add_argument("--config", dest="config", default=None, help="Configuration")
+parser.add_argument("--url", dest="url", default=None, help="Build URL")
+parser.add_argument("--build", dest="build", default=None, help="Build URL")
+parser.add_argument("--author-email", dest="author_email", default=None, help="Commit author email")
+parser.add_argument("--env", dest="db_env", default=[], action="append", help="Append environment information for datavbase")
+
+args = parser.parse_args()
+
+
+def dump(project):
+    return project.dump_db(packages=args.packages, builds=args.builds, tests=args.tests, branches=args.branches)
+
+def drop_all(project):
+    return project.drop_all()
+
+def dump_tests(project):
+    return project.dump_db_tests(packages=args.packages, branches=args.branches,
+      xls=args.xls, config=args.config, mail=args.mail, url=args.url,
+      author_email=args.author_email, build=args.build, env=args.db_env)
+
+def check_reg(project):
+    return project.check_reg(packages=args.packages, branches=args.branches,
+      config=args.config, build=args.build, env=args.db_env)
+
+
+commands = {
+    'drop_all': ['Drop everything in database', drop_all],
+    'dump': ['Dump database', dump],
+    'tests': ['Dump test status', dump_tests],
+    'check_reg': ['Check for a regression', check_reg],
+}
+
+pendingCommands = []
+
+
+def execCommand():
+
+    if project.get_status() != 0:
+      return
+
+    if len(pendingCommands) == 0: 
+      project.stop(0)
+      return
+
+    cmd = pendingCommands.pop(0)
+
+    if commands.get(cmd) == None:
+      print ('EXIT')
+      ret = 0 # submodules.execCmd(' '.join(argsList), versionsFile='versions.ini')
+      exit(ret)
+    else:
+      try:
+        if commands.get(cmd)[1](project) != 0:
+          print ()
+          print (plp.bcolors.FAIL + 'FATAL ERROR: the command \'%s\' has failed' % (cmd) + plp.bcolors.ENDC)
+          project.stop(-1)
+      except Exception as e:
+          print (plp.bcolors.FAIL + 'FATAL ERROR: the command \'%s\' has failed with an exception: %s' % ((cmd) + plp.bcolors.ENDC, e))
+          project.stop(-1)
+          if args.debug: raise
+      
+
+
+
+
+def handleCommands(log=None):
+
+  global pendingCommands
+
+  if len(args.command) == 0:
+      parser.print_help()
+      print ()
+      print ('Available commands:')
+      for name, cmd in commands.items():
+        print ('  %-10s %s' % (name, cmd[0]))
+      exit(0)
+  
+  else:
+    pendingCommands = args.command.copy()
+    execCommand()
+
+
+
+project = None
+
+try:
+  project = plp.Project(packages=args.packages, distrib=args.distrib, db=True, import_tests=True)
+  
+  handleCommands()
+
+except Exception as e:
+    print (plp.bcolors.FAIL + 'FATAL ERROR: %s' % (plp.bcolors.ENDC + str(e)))
+    if args.debug: raise
+    else: exit(-1)

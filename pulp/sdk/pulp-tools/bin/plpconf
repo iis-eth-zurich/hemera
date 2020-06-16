@@ -1,0 +1,74 @@
+#!/usr/bin/env python3
+
+import argparse
+import plptree
+import json_tools as js
+import os
+import os.path
+
+
+parser = argparse.ArgumentParser(description='Generate a user configuration')
+
+parser.add_argument(
+    "--output", dest="output", default=None,
+    help="Specify output configuration"
+)
+
+parser.add_argument(
+    "--input", dest="inputs", default=[], action="append",
+    help="Specify input configuration"
+)
+
+parser.add_argument(
+    "--input-file", dest="input_files", default=[], action="append",
+    help="Specify input configuration"
+)
+
+parser.add_argument(
+    "--config", dest="configs", action="append", default=[],
+    help="Specify additional configuration item"
+)
+
+args = parser.parse_args()
+
+
+tree = None
+
+for input_config in args.inputs:
+    new_tree = plptree.get_configs(config_string=input_config, no_args=True)[0]
+    if tree is None:
+        tree = new_tree
+    else:
+        tree.merge(new_tree)
+
+
+for input_config in args.input_files:
+    new_tree = plptree.get_configs(config_file=input_config, no_args=True)[0]
+    if tree is None:
+        tree = new_tree
+    else:
+        tree.merge(new_tree)
+
+
+config = js.import_config(tree.get_dict())
+
+for opt_list in args.configs:
+    for opt in opt_list.split(':'):
+        key, value = opt.split('=')
+        found = False
+        for input in args.inputs:
+            if input.find('template=') != -1 and (key == 'camera' or   key == 'microphone'):
+                found = True
+                break
+        if found:
+            continue
+
+        config.user_set(key, value)
+
+try:
+    os.makedirs(os.path.dirname(args.output))
+except:
+    pass
+
+with open(args.output, 'w') as file:
+    file.write(config.dump_to_string())

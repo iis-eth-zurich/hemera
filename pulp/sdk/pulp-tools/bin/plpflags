@@ -1,0 +1,91 @@
+#!/usr/bin/env python3
+
+import plptools as plp
+import plpflags
+import plptree
+
+import argparse
+import os
+import imp
+
+parser = argparse.ArgumentParser(description='Run a testset')
+
+parser.add_argument('command', metavar='CMD', type=str, nargs='*',
+                   help='a command to be executed')
+
+parser.add_argument("--config-def", dest="configDef", action="append", default=None, help="Specifies json files containing configurations definition")
+parser.add_argument("--config", dest="configs", action="append", default=[], help="Specifies configuration")
+parser.add_argument("--option", dest="options", action="append", default=[], help="Specify option")
+parser.add_argument("--out-config", dest="out_config", default=None, help="Output configuration")
+parser.add_argument("--config-file", dest="in_config", default=None, help="Input configuration file")
+
+
+[args, otherArgs] = parser.parse_known_args()	
+
+flags = plpflags.Flags(parser, options=args.options)
+
+if 'gen' in args.command:
+	parser.add_argument("--property", dest="properties", action="append", default=[], help="Specifies a property")
+	parser.add_argument("--makefile", dest="makefile", default=None, help="Path to generated makefile")
+	parser.add_argument("--lib", dest="libs", default=[], action="append", help="Append library to be built")
+
+if 'gen' in args.command or 'genlink' in args.command:
+	parser.add_argument("--output-dir", dest="outputDir", default=None, help="Output directory")
+	parser.add_argument("--app", dest="apps", default=[], action="append", help="Append application to be built")
+
+args = parser.parse_args()
+
+
+def gen(config):
+	if len(configs) != 1: raise Exception('Only one configuration can be specified to generate flags')
+	flags.gen(config=configs[0], path=args.outputDir, makefile=args.makefile, libs=args.libs, properties=args.properties, apps=args.apps, out_config=args.out_config)
+	return 0
+
+def genlink(config):
+	if len(configs) != 1: raise Exception('Only one configuration can be specified to generate flags')
+	flags.genlink(config=configs[0], path=args.outputDir, apps=args.apps)
+	return 0
+
+def dump_flags(config):
+	if len(configs) != 1: raise Exception('Only one configuration can be specified to dump flags')
+	flags.dump(config=configs[0])
+	return 0
+
+
+commands = {
+  'gen'         : ['Generate all required files (e.g. makefiles) needed to compile the module', gen],
+  'genlink'     : ['Generate linker script', genlink],
+  'dump_flags'  : ['Dump flags', dump_flags],
+}
+
+pendingCommands = []
+
+def handleCommands(configSet, log=None):
+
+	global pendingCommands
+
+	if len(args.command) == 0:
+	    parser.print_help()
+	    print ()
+	    print ('Available commands:')
+	    for name, cmd in commands.items():
+	    	print ('  %-10s %s' % (name, cmd[0]))
+	    exit(0)
+	
+	else:
+		pendingCommands = args.command.copy()
+		for cmd in pendingCommands:
+
+			if commands.get(cmd)[1](configSet) != 0:
+				print ()
+				print (plp.bcolors.FAIL + 'FATAL ERROR: the command \'%s\' has failed' % (cmd) + plp.bcolors.ENDC)
+				exit(1)
+
+if args.in_config is not None:
+	configs = plptree.get_configs_from_file(args.in_config)
+else:
+	configs = plptree.get_configs_from_env(args.configDef, args.configs)
+
+
+if configs != None:
+	handleCommands(configs)

@@ -1,0 +1,19 @@
+[submodule "pulp-tools"]
+	path = pulp-tools
+	url = https://github.com/pulp-platform/pulp-tools.git
+[submodule "pulp-configs"]
+	path = pulp-configs
+	url = git@iis-git.ee.ethz.ch:hero/pulp-configs.git
+	branch = urania
+[submodule "json-tools"]
+	path = json-tools
+	url = https://github.com/pulp-platform/json-tools.git
+[submodule "runtime/libomptarget-pulp-rtl"]
+	path = runtime/libomptarget-pulp-rtl
+	url = git@iis-git.ee.ethz.ch:hero/libomptarget-pulp-rtl.git
+[submodule "runtime/libvmm"]
+	path = runtime/libvmm
+	url = git@iis-git.ee.ethz.ch:hero/libvmm.git
+[submodule "runtime/pulp-rt"]
+	path = runtime/pulp-rt
+	url = git@iis-git.ee.ethz.ch:hero/pulp-rt.git
