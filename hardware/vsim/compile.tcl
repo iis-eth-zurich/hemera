@@ -2,7 +2,7 @@ set ROOT [file normalize [file dirname [info script]]/..]
 # This script was generated automatically by bender.
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -19,7 +19,18 @@ vlog -incr -sv \
     "$ROOT/deps/common_verification/src/rand_stream_slv.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
+    +define+TARGET_RTL \
+    +define+TARGET_SIMULATION \
+    +define+TARGET_TEST \
+    +define+TARGET_VSIM \
+    "+incdir+$ROOT/deps/common_cells/include/common_cells" \
+    "+incdir+$ROOT/deps/axi/include/axi" \
+    "+incdir+$ROOT/src/apb/include" \
+    "$ROOT/deps/tech_cells_generic/src/tc_sram.sv"
+
+vlog -incr -sv \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -32,7 +43,7 @@ vlog -incr -sv \
     "$ROOT/deps/tech_cells_generic/src/pulp_clock_mux2.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -66,7 +77,7 @@ vlog -incr -sv \
     "$ROOT/deps/tech_cells_generic/src/pulp_power_gating.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -123,7 +134,7 @@ vlog -incr -sv \
     "$ROOT/deps/common_cells/src/stream_arbiter.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -134,7 +145,7 @@ vlog -incr -sv \
     "$ROOT/deps/common_cells/src/sram.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -154,7 +165,7 @@ vlog -incr -sv \
     "$ROOT/deps/common_cells/test/sub_per_hash_tb.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -177,7 +188,7 @@ vlog -incr -sv \
     "$ROOT/deps/common_cells/src/edge_propagator_rx.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -195,7 +206,7 @@ vlog -incr -sv \
     "$ROOT/deps/fpu_div_sqrt_mvp/hdl/div_sqrt_mvp_wrapper.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -210,7 +221,7 @@ vlog -incr -sv \
     "$ROOT/deps/cluster_interconnect/rtl/interfaces/xbar_tcdm_bus.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -238,7 +249,7 @@ vlog -incr -sv \
     "$ROOT/deps/cluster_interconnect/rtl/low_latency_interco/XBAR_TCDM_WRAPPER.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -261,7 +272,7 @@ vlog -incr -sv \
     "$ROOT/deps/cluster_interconnect/rtl/peripheral_interco/XBAR_PE.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -278,7 +289,7 @@ vlog -incr -sv \
     "$ROOT/deps/cluster_interconnect/rtl/tcdm_interconnect/tcdm_interconnect.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -300,7 +311,7 @@ vlog -incr -sv \
     "$ROOT/deps/fpnew/src/fpnew_top.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -349,7 +360,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi/src/axi_xbar.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -360,7 +371,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi/src/axi_test.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -383,7 +394,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi/test/tb_axi_xbar.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -401,7 +412,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi_slice/src/axi_slice_wrap.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -412,7 +423,7 @@ vlog -incr -sv \
     "$ROOT/deps/cluster_peripherals/cluster_control_unit/cluster_control_unit.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -433,7 +444,7 @@ vlog -incr -sv \
     "$ROOT/deps/cluster_peripherals/event_unit/event_unit.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -458,7 +469,7 @@ vlog -incr -sv \
     "$ROOT/deps/cluster_peripherals/tcdm_pipe_unit/tcdm_pipe_unit.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -477,7 +488,7 @@ vlog -incr -sv \
     "$ROOT/deps/icache-intc/icache_intc.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -514,7 +525,7 @@ vlog -incr -sv \
     "$ROOT/deps/riscv/rtl/riscv_L0_buffer.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -526,7 +537,7 @@ vlog -incr -sv \
     "$ROOT/deps/riscv/rtl/riscv_register_file.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -538,7 +549,7 @@ vlog -incr -sv \
     "$ROOT/deps/riscv/rtl/riscv_tracer.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -568,7 +579,7 @@ vlog -incr -sv \
     "$ROOT/deps/scm/latch_scm/register_file_multi_way_1w_multi_port_read.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -583,7 +594,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi2mem/src/axi_to_mem_banked_intf.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -596,7 +607,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi2per/axi2per.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -625,7 +636,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi_node/src/axi_response_block.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -645,7 +656,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi_slice_dc/src/axi_slice_dc_slave_wrap.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -665,7 +676,7 @@ vlog -incr -sv \
     "$ROOT/deps/event_unit_flex/rtl/periph_FIFO_id.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -686,7 +697,7 @@ vlog -incr -sv \
     "$ROOT/deps/fpga-support/rtl/AxiBramLogger.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -715,7 +726,7 @@ vlog -incr -sv \
     "$ROOT/deps/fpu_interco/RTL/XBAR_FPU.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -740,7 +751,7 @@ vlog -incr -sv \
     "$ROOT/deps/hier-icache/RTL/TOP/icache128_2_axi64.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -758,7 +769,7 @@ vlog -incr -sv \
     "$ROOT/deps/icache_mp_128_pf/RTL/icache_top_mp_128_PF.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -802,7 +813,7 @@ vlog -incr -sv \
     "$ROOT/deps/mchan/rtl/top/mchan.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -816,7 +827,7 @@ vlog -incr -sv \
     "$ROOT/deps/per2axi/src/per2axi.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -830,7 +841,7 @@ vlog -incr -sv \
     "$ROOT/deps/timer_unit/rtl/timer_unit.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -841,7 +852,7 @@ vlog -incr -sv \
     "$ROOT/deps/apb/src/apb_intf.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -852,7 +863,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi_mem_if/src/axi_mem_if.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -870,7 +881,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi_riscv_atomics/src/axi_riscv_atomics_wrap.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -886,7 +897,7 @@ vlog -incr -sv \
     "$ROOT/deps/axi_riscv_atomics/test/axi_riscv_lrsc_tb.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -912,7 +923,7 @@ vlog -incr -sv \
     "$ROOT/deps/pulp_cluster/rtl/pulp_cluster.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -931,7 +942,7 @@ vlog -incr -sv \
     "$ROOT/deps/riscv-dbg/src/dm_sba.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
@@ -957,7 +968,7 @@ vlog -incr -sv \
     "$ROOT/src/pulp_ooc.sv"
 
 vlog -incr -sv \
-    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233 \
+    -suppress vlog-2583 -suppress vlog-13314 -suppress vlog-13233  \
     +define+TARGET_RTL \
     +define+TARGET_SIMULATION \
     +define+TARGET_TEST \
