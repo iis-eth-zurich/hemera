@@ -13,6 +13,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 
+## 2020-06-30
+### Changed
+- `pulp_cluster`:
+  - Increase depth of buffers in DMA `trans_unit` to 4 and add a register on the W channel of the
+    cluster crossbar to reduce the number of idle bus cycles between DMA bursts.
+  - Increase maximum number of in-flight DMA transactions to 32.
+- `fpnew`, `riscv-dbg`, `tcdm_interconnect`: Change syntax of some type casts to improve
+  compatibility with some tools.
+
+### Fixed
+- `axi_to_mem` and `core_demux`: Remove `'x` default assignments.
+- `register_file_2r_2w_icache`: Fix enable condition in FF mode.
+- `riscv` core: Provide legal value in Debug Trigger Info CSR.
+
+
 ## 2020-06-23
 ### Added
 - `hier-icache`: Add implementation alternatives of data and tag memories of the instruction cache.
