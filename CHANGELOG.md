@@ -12,6 +12,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 
+## 2020-07-10
+### Added
+- Add OpenOCD scripts for debugging with GDB; see `hardware/README_DEBUG.md` for details.
+
+
 ## 2020-07-09-1
 ### Fixed
 - `axi_pkg`: Reapply patch "Remove `enum`ness of `xbar_latency_e` to improve compatibility with some
