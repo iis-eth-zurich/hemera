@@ -12,6 +12,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 
+## 2020-07-14
+### Fixed
+- `axi_dw_downsizer` and `debug_system`: Cut W channel to break combinational loop.
+
+
 ## 2020-07-10
 ### Added
 - Add OpenOCD scripts for debugging with GDB; see `hardware/README_DEBUG.md` for details.
