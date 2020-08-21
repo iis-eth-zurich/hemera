@@ -3742,8 +3742,8 @@
                 "--rv32a",
                 "--itc-external-req"
               ],
-              "march": "imacXpulpv2",
-              "isa": "rv32imacXpulpv2",
+              "march": "imacXhua20",
+              "isa": "rv32imacxhua20",
               "priv_version": 1.9,
               "perf_counters": true,
               "features": [
@@ -3809,8 +3809,8 @@
                 "--rv32a",
                 "--itc-external-req"
               ],
-              "march": "imacXpulpv2",
-              "isa": "rv32imacXpulpv2",
+              "march": "imacXhua20",
+              "isa": "rv32imacxhua20",
               "priv_version": 1.9,
               "perf_counters": true,
               "features": [
@@ -3892,8 +3892,8 @@
                 "--rv32a",
                 "--itc-external-req"
               ],
-              "march": "imacXpulpv2",
-              "isa": "rv32imacXpulpv2",
+              "march": "imacXhua20",
+              "isa": "rv32imacxhua20",
               "priv_version": 1.9,
               "perf_counters": true,
               "features": [
@@ -3975,8 +3975,8 @@
                 "--rv32a",
                 "--itc-external-req"
               ],
-              "march": "imacXpulpv2",
-              "isa": "rv32imacXpulpv2",
+              "march": "imacXhua20",
+              "isa": "rv32imacxhua20",
               "priv_version": 1.9,
               "perf_counters": true,
               "features": [
@@ -4058,8 +4058,8 @@
                 "--rv32a",
                 "--itc-external-req"
               ],
-              "march": "imacXpulpv2",
-              "isa": "rv32imacXpulpv2",
+              "march": "imacXhua20",
+              "isa": "rv32imacxhua20",
               "priv_version": 1.9,
               "perf_counters": true,
               "features": [
@@ -4141,8 +4141,8 @@
                 "--rv32a",
                 "--itc-external-req"
               ],
-              "march": "imacXpulpv2",
-              "isa": "rv32imacXpulpv2",
+              "march": "imacXhua20",
+              "isa": "rv32imacxhua20",
               "priv_version": 1.9,
               "perf_counters": true,
               "features": [
@@ -4224,8 +4224,8 @@
                 "--rv32a",
                 "--itc-external-req"
               ],
-              "march": "imacXpulpv2",
-              "isa": "rv32imacXpulpv2",
+              "march": "imacXhua20",
+              "isa": "rv32imacxhua20",
               "priv_version": 1.9,
               "perf_counters": true,
               "features": [
@@ -4307,8 +4307,8 @@
                 "--rv32a",
                 "--itc-external-req"
               ],
-              "march": "imacXpulpv2",
-              "isa": "rv32imacXpulpv2",
+              "march": "imacXhua20",
+              "isa": "rv32imacxhua20",
               "priv_version": 1.9,
               "perf_counters": true,
               "features": [
@@ -4390,8 +4390,8 @@
                 "--rv32a",
                 "--itc-external-req"
               ],
-              "march": "imacXpulpv2",
-              "isa": "rv32imacXpulpv2",
+              "march": "imacXhua20",
+              "isa": "rv32imacxhua20",
               "priv_version": 1.9,
               "perf_counters": true,
               "features": [
